@@ -2,6 +2,11 @@
 abstract class Car {
     protected mileage: number;
     protected fuel: number;
+
+    constructor(mileage: number, fuel: number) {
+        this.mileage = mileage;
+        this.fuel = fuel;
+    }
     
     public abstract drive(distance: number): void;
     public abstract refuel(volume: number): void;
@@ -32,9 +37,7 @@ class RealCar extends Car {
         fuel:number, 
         fuelConsumption: number
         ) {
-        super(); 
-        this.mileage = mileage;
-        this.fuel = fuel;
+        super(mileage, fuel); 
         this.tankCapacity = tankCapacity;
         this.fuelConsumption = fuelConsumption;
     };

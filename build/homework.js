@@ -1,5 +1,9 @@
 // Car - abstract class which describe car
 class Car {
+    constructor(mileage, fuel) {
+        this.mileage = mileage;
+        this.fuel = fuel;
+    }
     /**
      * fuelTank - getter for fuel property
     */
@@ -16,9 +20,7 @@ class Car {
 // RealCar - class which inherits from abstract class Car
 class RealCar extends Car {
     constructor(tankCapacity, mileage, fuel, fuelConsumption) {
-        super();
-        this.mileage = mileage;
-        this.fuel = fuel;
+        super(mileage, fuel);
         this.tankCapacity = tankCapacity;
         this.fuelConsumption = fuelConsumption;
     }
