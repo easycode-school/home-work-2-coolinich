@@ -1,16 +1,5 @@
 // Car - abstract class which describe car
 class Car {
-}
-// RealCar - class which inherits from abstract class Car
-class RealCar extends Car {
-    constructor(tankCapacity, mileage, fuel, fuelConsumption) {
-        super();
-        this.mileage = mileage;
-        this.fuel = fuel;
-        this.tankCapacity = tankCapacity;
-        this.fuelConsumption = fuelConsumption;
-    }
-    ;
     /**
      * fuelTank - getter for fuel property
     */
@@ -23,6 +12,17 @@ class RealCar extends Car {
     get mileageTotal() {
         return this.mileage;
     }
+}
+// RealCar - class which inherits from abstract class Car
+class RealCar extends Car {
+    constructor(tankCapacity, mileage, fuel, fuelConsumption) {
+        super();
+        this.mileage = mileage;
+        this.fuel = fuel;
+        this.tankCapacity = tankCapacity;
+        this.fuelConsumption = fuelConsumption;
+    }
+    ;
     /**
      * drive - function which updates data according to received distance value
      * @param {number} distance length of trip
@@ -43,8 +43,12 @@ class RealCar extends Car {
      * @param {number} volume increment of fuel value
      */
     refuel(volume) {
-        this.fuel += volume;
-        this.fuel = this.fuel > this.tankCapacity ? this.tankCapacity : this.fuel;
+        if (volume > 0) {
+            this.fuel += volume;
+            this.fuel = this.fuel > this.tankCapacity ? this.tankCapacity : this.fuel;
+        }
+        else
+            console.log('Provide correct volume to refuel the tank!');
     }
 }
 const newCar = new RealCar(30, 120, 0, 5);

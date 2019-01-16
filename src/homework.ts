@@ -5,6 +5,20 @@ abstract class Car {
     
     public abstract drive(distance: number): void;
     public abstract refuel(volume: number): void;
+
+    /** 
+     * fuelTank - getter for fuel property
+    */
+    public get fuelTank(): number {
+        return this.fuel;
+    }
+
+    /** 
+     * mileageTotal - getter for mileage property
+    */
+    public get mileageTotal(): number {
+        return this.mileage;
+    }
 }
 
 // RealCar - class which inherits from abstract class Car
@@ -24,21 +38,6 @@ class RealCar extends Car {
         this.tankCapacity = tankCapacity;
         this.fuelConsumption = fuelConsumption;
     };
-
-    /** 
-     * fuelTank - getter for fuel property
-    */
-    public get fuelTank(): number {
-        return this.fuel;
-    }
-
-    
-    /** 
-     * mileageTotal - getter for mileage property
-    */
-    public get mileageTotal(): number {
-        return this.mileage;
-    }
 
     /**
      * drive - function which updates data according to received distance value
@@ -60,8 +59,11 @@ class RealCar extends Car {
      * @param {number} volume increment of fuel value
      */
     refuel(volume: number): void {
-        this.fuel += volume;
-        this.fuel = this.fuel > this.tankCapacity ? this.tankCapacity : this.fuel; 
+        if (volume > 0) {
+            this.fuel += volume;
+            this.fuel = this.fuel > this.tankCapacity ? this.tankCapacity : this.fuel;
+        } else console.log('Provide correct volume to refuel the tank!');
+         
     }
 }
 
@@ -73,6 +75,3 @@ console.log( newCar.mileageTotal );
 newCar.drive(600);
 console.log( newCar.fuelTank );
 console.log( newCar.mileageTotal );
-
-
-
